@@ -138,7 +138,7 @@ The `returnUrlForSCA` parameter must match the configuration of your `AndroidMan
 
 ```dart
 Stripe.init("pk_xxx", returnUrlForSCA: "stripesdk://3ds.stripesdk.io");
-final clientSecret = await server.createPaymentIntent(Stripe.instance.getReturnUrl());
+final clientSecret = await server.createPaymentIntent(Stripe.instance.getReturnUrlForSca());
 final paymentIntent = await Stripe.instance.confirmPayment(clientSecret, "pm_card_visa");
 ```
 

@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:stripe_sdk/stripe_sdk.dart';
-
 import 'package:stripe_sdk/stripe_sdk_ui.dart';
 
 const publishableKey = "my-key";
@@ -32,7 +31,7 @@ Future<String> _fetchEphemeralKeyFromMyServer(String apiVersion) {
 exampleConfirmPayment() async {
   Stripe.init(publishableKey);
   final paymentIntentClientSecret =
-      await _createPaymentIntent(Stripe.instance.getReturnUrl());
+      await _createPaymentIntent(Stripe.instance.getReturnUrlForSca());
   final paymentIntent = await Stripe.instance
       .confirmPayment(paymentIntentClientSecret, "pm-paymentMethod");
   if (paymentIntent['status'] == 'success') {
@@ -54,7 +53,7 @@ Future<String> _createPaymentIntent(String returnUrl) {
 exampleAuthenticatePayment() async {
   Stripe.init(publishableKey);
   final paymentIntentClientSecret =
-      await _createAndConfirmPaymentIntent(Stripe.instance.getReturnUrl());
+      await _createAndConfirmPaymentIntent(Stripe.instance.getReturnUrlForSca());
   final paymentIntent =
       await Stripe.instance.authenticatePayment(paymentIntentClientSecret);
   if (paymentIntent['status'] == "success") {
