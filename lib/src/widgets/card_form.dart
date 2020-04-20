@@ -58,12 +58,11 @@ class _CardFormState extends State<CardForm> {
       cardExpiry = "${_validationModel.expMonth}/${_validationModel.expYear ?? 'YY'}";
     }
 
-    return SingleChildScrollView(
-      child:
+    return
           Column(mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(
           padding: const EdgeInsets.only(top: 16.0),
-          child: CreditCard(
+          child: Align(alignment: Alignment.center, child: ConstrainedBox( constraints: BoxConstraints( maxWidth: 512, maxHeight: 256), child:CreditCard(
             cardNumber: _validationModel.number ?? "",
             cardExpiry: cardExpiry,
             cvv: _validationModel.cvc ?? "",
@@ -71,7 +70,7 @@ class _CardFormState extends State<CardForm> {
             backBackground: CardBackgrounds.white,
             showBackSide: cvcHasFocus,
             showShadow: true,
-          ),
+          ))),
         ),
         Form(
           key: widget.formKey,
@@ -141,7 +140,7 @@ class _CardFormState extends State<CardForm> {
             ),
           ),
         ),
-      ]),
+      ],
     );
   }
 }
